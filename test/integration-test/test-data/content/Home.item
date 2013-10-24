@@ -261,7 +261,7 @@ Home
 field: {577F1689-7DE4-4AD2-A15F-7FDC1759285F}
 name: __Long description
 key: __long description
-content-length: 58
+content-length: 59
 
 Das Home Item ist der vorgegebene Startpunkt einer Website.
 ----field----
@@ -345,7 +345,7 @@ content-length: 0
 field: {577F1689-7DE4-4AD2-A15F-7FDC1759285F}
 name: __Long description
 key: __long description
-content-length: 58
+content-length: 57
 
 The Home item is the default starting point for a website.
 ----field----

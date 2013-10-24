@@ -34,6 +34,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Infrastructure.Intg.Test", "test\integration-test\Sitecore.Serialization.Infrastructure.Intg.Test\Sitecore.Serialization.Infrastructure.Intg.Test.csproj", "{F9BA7FF6-62BD-4520-B5F8-838192FFC543}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-data", "test-data", "{995AAA64-DF70-40F9-8307-ADF402306115}"
+	ProjectSection(SolutionItems) = preProject
+		test\integration-test\test-data\content\Home - Original.item = test\integration-test\test-data\content\Home - Original.item
+		test\integration-test\test-data\content\Home.item = test\integration-test\test-data\content\Home.item
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

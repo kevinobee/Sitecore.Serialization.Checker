@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Sitecore.Data.Serialization.ObjectModel;
 using Sitecore.Serialization.Core;
 
@@ -19,8 +20,10 @@ namespace Sitecore.Serialization.Infrastructure
                 SyncItem.ReadItem(reader);
                 return true;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+
+
                 return false;
             }
         }
