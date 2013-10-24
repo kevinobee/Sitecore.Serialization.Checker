@@ -5,15 +5,19 @@ using Sitecore.Serialization.Core;
 
 namespace Sitecore.Serialization.Checker
 {
-    internal class SerializedItemChecker
+    public class SerializedItemChecker
     {
         private readonly IItemValidator _itemValidator;
+        private readonly IItemFileWriter _itemFileWriter;
         private int _filesChecked;
         private int _filesWithErrors;
+        private bool _fixFilesRequested;
+        private int _filesFixed;
 
-        public SerializedItemChecker(IItemValidator itemValidator)
+        public SerializedItemChecker(IItemValidator itemValidator, IItemFileWriter itemFileWriter)
         {
             _itemValidator = itemValidator;
+            _itemFileWriter = itemFileWriter;
         }
 
         public void Execute(string[] args)
@@ -22,6 +26,7 @@ namespace Sitecore.Serialization.Checker
             if (Parser.Default.ParseArguments(args, options))
             {
                 var fullPath = Path.GetFullPath(options.Path);
+                _fixFilesRequested = options.FixFiles;
 
                 Console.WriteLine("Processing : {0}", fullPath);
 
@@ -36,8 +41,23 @@ namespace Sitecore.Serialization.Checker
         private void DisplayStatistics()
         {
             Console.WriteLine();
-            Console.WriteLine("Checked {0} file{1}, {2} validation error{3} found.", _filesChecked, Pluralise(_filesChecked), _filesWithErrors, Pluralise(_filesWithErrors));
+            Console.WriteLine("Checked {0} file{1}, {2} validation error{3} found. {4} fixed", _filesChecked, Pluralise(_filesChecked), _filesWithErrors, Pluralise(_filesWithErrors), GetFilesFixed());
             Console.WriteLine();
+        }
+
+        private string GetFilesFixed()
+        {
+            if (_filesFixed == _filesWithErrors)
+            {
+                return "All files";
+            }
+
+            if (_filesFixed == 1)
+            {
+                return "1 file";
+            }
+
+            return string.Format("{0} files", _filesFixed);
         }
 
         private string Pluralise(int count)
@@ -49,6 +69,7 @@ namespace Sitecore.Serialization.Checker
         {
             _filesChecked = 0;
             _filesWithErrors = 0;
+            _filesFixed = 0;
         }   
 
         private void ProcessDirectory(string path)
@@ -70,9 +91,30 @@ namespace Sitecore.Serialization.Checker
 
             if (!isValid)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("Invalid - {0}", filePath);   
                 Console.ResetColor();
+
+                if (_fixFilesRequested)
+                {
+                    _itemFileWriter.Fix(filePath);
+
+                    isValid = _itemValidator.IsValid(filePath);
+                    
+                    if (isValid)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Fixed");
+                        _filesFixed++;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Fix Failed");                        
+                    }
+
+                    Console.ResetColor();
+                }
 
                 _filesWithErrors++;
             }

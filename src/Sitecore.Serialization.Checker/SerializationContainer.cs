@@ -7,7 +7,8 @@ namespace Sitecore.Serialization.Checker
         public SerializedItemChecker ResolveSerializationParser()
         {
             var validator = new ItemValidator();
-            return new SerializedItemChecker(validator);
+            var fileWriter = new ItemFileWriter();
+            return new SerializedItemChecker(validator, fileWriter);
         }
     }
 }
