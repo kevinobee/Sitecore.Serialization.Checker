@@ -1,4 +1,5 @@
-﻿using Sitecore.Serialization.Infrastructure;
+﻿using Sitecore.Serialization.Core;
+using Sitecore.Serialization.Infrastructure;
 
 namespace Sitecore.Serialization.Checker
 {
@@ -6,9 +7,12 @@ namespace Sitecore.Serialization.Checker
     {
         public SerializedItemChecker ResolveSerializationParser()
         {
-            var validator = new ItemValidator();
-            var fileWriter = new ItemFileWriter();
-            return new SerializedItemChecker(validator, fileWriter);
+            IItemValidator validator = new ItemValidator();
+            IItemFileWriter fileWriter =  new SyncItemFileWriter();
+
+            IOutputWriter outputWriter = new ConsoleOutputWriter();
+
+            return new SerializedItemChecker(validator, fileWriter, outputWriter);
         }
     }
 }

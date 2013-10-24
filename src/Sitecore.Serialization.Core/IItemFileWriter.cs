@@ -2,6 +2,6 @@
 {
     public interface IItemFileWriter
     {
-        void Fix(string sourcePath);
+        void Fix(string filePath);
     }
 }

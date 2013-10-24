@@ -33,18 +33,14 @@
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\..\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemFileWriter.cs" />
+    <Compile Include="ConsoleOutputWriter.cs" />
     <Compile Include="ItemValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializationUtils.cs" />
+    <Compile Include="SyncItemFileWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sitecore.Serialization.Core\Sitecore.Serialization.Core.csproj">

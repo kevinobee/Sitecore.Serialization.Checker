@@ -5,8 +5,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0717179-F14
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit test", "unit test", "{923D9377-9025-425B-9698-1A38947CA973}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{BFDC90B2-65F5-4F9E-A49F-9CD8060A2B4B}"
 	ProjectSection(SolutionItems) = preProject
 		lib\README.md = lib\README.md
@@ -15,8 +13,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D11D4F10-B2C8-4E1C-BF78-B192D303D20D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration test", "integration test", "{62E649F4-4878-4EA3-BCF6-82CB86D2B685}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "acceptance test", "acceptance test", "{9BF13B7F-07E4-43B3-9B90-E06EBB39CC53}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BEE8E8AE-8A3D-46DE-A751-B1B7C85D5365}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,8 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Infr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-data", "test-data", "{995AAA64-DF70-40F9-8307-ADF402306115}"
 	ProjectSection(SolutionItems) = preProject
-		test\integration-test\test-data\content\Home - Original.item = test\integration-test\test-data\content\Home - Original.item
-		test\integration-test\test-data\content\Home.item = test\integration-test\test-data\content\Home.item
+		test\integration-test\test-data\Home-Corrupt.item = test\integration-test\test-data\Home-Corrupt.item
+		test\integration-test\test-data\Home.item = test\integration-test\test-data\Home.item
 	EndProjectSection
 EndProject
 Global
@@ -69,9 +65,7 @@ Global
 		{F7963A47-DA60-49D6-85C7-D02220837342} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
 		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
 		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
-		{923D9377-9025-425B-9698-1A38947CA973} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
 		{62E649F4-4878-4EA3-BCF6-82CB86D2B685} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
-		{9BF13B7F-07E4-43B3-9B90-E06EBB39CC53} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
 		{F9BA7FF6-62BD-4520-B5F8-838192FFC543} = {62E649F4-4878-4EA3-BCF6-82CB86D2B685}
 		{995AAA64-DF70-40F9-8307-ADF402306115} = {62E649F4-4878-4EA3-BCF6-82CB86D2B685}
 	EndGlobalSection

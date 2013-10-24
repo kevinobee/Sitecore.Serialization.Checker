@@ -9,40 +9,54 @@ namespace Sitecore.Serialization.Checker
     {
         private readonly IItemValidator _itemValidator;
         private readonly IItemFileWriter _itemFileWriter;
+        private readonly IOutputWriter _outputWriter;
+
         private int _filesChecked;
         private int _filesWithErrors;
         private bool _fixFilesRequested;
         private int _filesFixed;
 
-        public SerializedItemChecker(IItemValidator itemValidator, IItemFileWriter itemFileWriter)
+        public SerializedItemChecker(IItemValidator itemValidator, IItemFileWriter itemFileWriter, IOutputWriter outputWriter)
         {
             _itemValidator = itemValidator;
             _itemFileWriter = itemFileWriter;
+            _outputWriter = outputWriter;
         }
 
         public void Execute(string[] args)
         {
-            var options = new Options();
-            if (Parser.Default.ParseArguments(args, options))
+            try
             {
-                var fullPath = Path.GetFullPath(options.Path);
-                _fixFilesRequested = options.FixFiles;
+                var options = new Options();
+                if (Parser.Default.ParseArguments(args, options))
+                {
+                    var fullPath = Path.GetFullPath(options.Path);
+                    _fixFilesRequested = options.FixFiles;
 
-                Console.WriteLine("Processing : {0}", fullPath);
+                    _outputWriter.Info(string.Format("Processing : {0}", fullPath));
 
-                ResetStatistics();
+                    ResetStatistics();
 
-                ProcessDirectory(fullPath);
+                    ProcessDirectory(fullPath);
+                }
+
+                DisplayStatistics();
             }
-
-            DisplayStatistics();
+            catch (InvalidOperationException exception)
+            {
+                _outputWriter.Fail(string.Format("Fail: {0}", exception.Message));
+            }
         }
 
         private void DisplayStatistics()
         {
-            Console.WriteLine();
-            Console.WriteLine("Checked {0} file{1}, {2} validation error{3} found. {4} fixed", _filesChecked, Pluralise(_filesChecked), _filesWithErrors, Pluralise(_filesWithErrors), GetFilesFixed());
-            Console.WriteLine();
+            _outputWriter.WriteLine();
+            _outputWriter.WriteFormatLine(MessageType.Info, "Checked {0} file{1}, {2} validation error{3} found. {4} fixed", 
+                              _filesChecked, Pluralise(_filesChecked), 
+                              _filesWithErrors, Pluralise(_filesWithErrors), 
+                              GetFilesFixed());
+
+            _outputWriter.WriteLine();
         }
 
         private string GetFilesFixed()
@@ -74,6 +88,11 @@ namespace Sitecore.Serialization.Checker
 
         private void ProcessDirectory(string path)
         {
+            if (! Directory.Exists(path))
+            {
+                throw new InvalidOperationException(string.Format("{0} does not exist", path));
+            }
+
             foreach (var file in Directory.GetFiles(path, "*.item"))
             {
                 ProcessFile(file);
@@ -91,9 +110,7 @@ namespace Sitecore.Serialization.Checker
 
             if (!isValid)
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("Invalid - {0}", filePath);   
-                Console.ResetColor();
+                _outputWriter.WriteFormatLine(MessageType.Warn, "Invalid - {0}", filePath);
 
                 if (_fixFilesRequested)
                 {
@@ -103,17 +120,13 @@ namespace Sitecore.Serialization.Checker
                     
                     if (isValid)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Fixed");
+                        _outputWriter.Success("Fixed");
                         _filesFixed++;
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Fix Failed");                        
+                        _outputWriter.Fail("Fix Failed");                    
                     }
-
-                    Console.ResetColor();
                 }
 
                 _filesWithErrors++;

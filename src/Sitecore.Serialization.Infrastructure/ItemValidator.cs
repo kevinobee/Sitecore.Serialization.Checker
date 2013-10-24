@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using Sitecore.Data.Serialization.ObjectModel;
 using Sitecore.Serialization.Core;
 
@@ -10,22 +9,24 @@ namespace Sitecore.Serialization.Infrastructure
     {
         public bool IsValid(string filePath)
         {
-            return ReadItem(new Tokenizer(new StreamReader(filePath)));
+            using (var streamReader = new StreamReader(filePath))
+            {
+                return ReadItem(new Tokenizer(streamReader));                
+            }
         }
 
-        private bool ReadItem(Tokenizer reader)
+        private static bool ReadItem(Tokenizer reader)
         {
             try
             {
                 SyncItem.ReadItem(reader);
-                return true;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-
-
                 return false;
             }
+
+            return true;
         }
     }
 }

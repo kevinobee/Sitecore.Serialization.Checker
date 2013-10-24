@@ -1,11 +1,10 @@
 ﻿using Should;
 using Xunit;
-
 using Sitecore.Serialization.Core;
 
-namespace Sitecore.Serialization.Infrastructure.Intg.Test
+namespace Sitecore.Serialization.Infrastructure.Intg.Test.SerializedItemFileTests
 {
-    public class ItemValidationBehaviour
+    public class ItemValidationBehaviour : SerializedItemFileTest
     {
         private readonly IItemValidator _validator;
 
@@ -17,8 +16,7 @@ namespace Sitecore.Serialization.Infrastructure.Intg.Test
         [Fact]
         public void Should_return_IsValid_for_valid_serialized_items()
         {
-            bool isValid = _validator.IsValid(@"..\..\..\test-data\content\Home - Original.item");
-
+            var isValid = _validator.IsValid(TestDataPath + "Home.item");
 
             isValid.ShouldBeTrue();
         }
@@ -26,7 +24,7 @@ namespace Sitecore.Serialization.Infrastructure.Intg.Test
         [Fact]
         public void Should_return_not_valid_for_corrupted_serialized_items()
         {
-            bool isValid = _validator.IsValid(@"..\..\..\test-data\content\Home.item");
+            var isValid = _validator.IsValid(TestDataPath + "Home-Corrupt.item");
 
             isValid.ShouldBeFalse();
         }
