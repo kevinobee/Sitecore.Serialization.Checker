@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7963A47-DA60-49D6-85C7-D02220837342}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F9BA7FF6-62BD-4520-B5F8-838192FFC543}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sitecore.Serialization.Checker</RootNamespace>
-    <AssemblyName>Sitecore.Serialization.Checker</AssemblyName>
+    <RootNamespace>Sitecore.Serialization.Infrastructure.Intg.Test</RootNamespace>
+    <AssemblyName>Sitecore.Serialization.Infrastructure.Intg.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine">
-      <HintPath>..\..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    <Reference Include="Should">
+      <HintPath>..\..\..\packages\Should.1.1.20\lib\Should.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,26 +42,23 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="xunit">
+      <HintPath>..\..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Options.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ItemValidationBehaviour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerializedItemChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sitecore.Serialization.Core\Sitecore.Serialization.Core.csproj">
+    <ProjectReference Include="..\..\..\src\Sitecore.Serialization.Core\Sitecore.Serialization.Core.csproj">
       <Project>{a4620c4e-64c5-4ed1-9720-69dea0fc28b0}</Project>
       <Name>Sitecore.Serialization.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sitecore.Serialization.Infrastructure\Sitecore.Serialization.Infrastructure.csproj">
+    <ProjectReference Include="..\..\..\src\Sitecore.Serialization.Infrastructure\Sitecore.Serialization.Infrastructure.csproj">
       <Project>{6c397f47-12e8-488f-9cdf-ea90d57bbfc7}</Project>
       <Name>Sitecore.Serialization.Infrastructure</Name>
     </ProjectReference>

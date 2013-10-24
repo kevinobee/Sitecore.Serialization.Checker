@@ -25,13 +25,50 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BEE8E8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Checker", "src\Sitecore.Serialization.Checker\Sitecore.Serialization.Checker.csproj", "{F7963A47-DA60-49D6-85C7-D02220837342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Core", "src\Sitecore.Serialization.Core\Sitecore.Serialization.Core.csproj", "{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Infrastructure", "src\Sitecore.Serialization.Infrastructure\Sitecore.Serialization.Infrastructure.csproj", "{6C397F47-12E8-488F-9CDF-EA90D57BBFC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Serialization.Infrastructure.Intg.Test", "test\integration-test\Sitecore.Serialization.Infrastructure.Intg.Test\Sitecore.Serialization.Infrastructure.Intg.Test.csproj", "{F9BA7FF6-62BD-4520-B5F8-838192FFC543}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-data", "test-data", "{995AAA64-DF70-40F9-8307-ADF402306115}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7963A47-DA60-49D6-85C7-D02220837342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7963A47-DA60-49D6-85C7-D02220837342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7963A47-DA60-49D6-85C7-D02220837342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7963A47-DA60-49D6-85C7-D02220837342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BA7FF6-62BD-4520-B5F8-838192FFC543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BA7FF6-62BD-4520-B5F8-838192FFC543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BA7FF6-62BD-4520-B5F8-838192FFC543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BA7FF6-62BD-4520-B5F8-838192FFC543}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F7963A47-DA60-49D6-85C7-D02220837342} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
+		{A4620C4E-64C5-4ED1-9720-69DEA0FC28B0} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
+		{6C397F47-12E8-488F-9CDF-EA90D57BBFC7} = {F0717179-F14B-4667-8D5A-5980EC935F0F}
 		{923D9377-9025-425B-9698-1A38947CA973} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
 		{62E649F4-4878-4EA3-BCF6-82CB86D2B685} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
 		{9BF13B7F-07E4-43B3-9B90-E06EBB39CC53} = {2A29E5BC-9DE1-4299-AFD9-86F1CC77B921}
+		{F9BA7FF6-62BD-4520-B5F8-838192FFC543} = {62E649F4-4878-4EA3-BCF6-82CB86D2B685}
+		{995AAA64-DF70-40F9-8307-ADF402306115} = {62E649F4-4878-4EA3-BCF6-82CB86D2B685}
 	EndGlobalSection
 EndGlobal
