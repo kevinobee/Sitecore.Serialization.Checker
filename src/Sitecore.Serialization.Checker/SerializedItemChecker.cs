@@ -51,7 +51,7 @@ namespace Sitecore.Serialization.Checker
         private void DisplayStatistics()
         {
             _outputWriter.WriteLine();
-            _outputWriter.WriteFormatLine(MessageType.Info, "Checked {0} file{1}, {2} validation error{3} found. {4} fixed", 
+            _outputWriter.WriteFormatLine(MessageType.Info, "Checked {0} file{1}, {2} validation error{3} found. {4}", 
                               _filesChecked, Pluralise(_filesChecked), 
                               _filesWithErrors, Pluralise(_filesWithErrors), 
                               GetFilesFixed());
@@ -61,17 +61,22 @@ namespace Sitecore.Serialization.Checker
 
         private string GetFilesFixed()
         {
+            if (_filesWithErrors == 0)
+            {
+                return "";
+            }
+
+            if (!_fixFilesRequested)
+            {
+                return "Run again with -f option to fix errors";
+            }
+
             if (_filesFixed == _filesWithErrors)
             {
-                return "All files";
+                return "All files fixed";
             }
 
-            if (_filesFixed == 1)
-            {
-                return "1 file";
-            }
-
-            return string.Format("{0} files", _filesFixed);
+            return _filesFixed == 1 ? "1 file fixed" : string.Format("{0} files", _filesFixed);
         }
 
         private string Pluralise(int count)
